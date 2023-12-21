@@ -35,6 +35,7 @@ export const DataTable: React.FC<TableProps> = ({ tabelData }) => {
     return {
       rowId: "header",
       cells: [
+        
         ...colsKey.map((c) => {
           return { type: "header", text: c };
         }),
@@ -47,10 +48,10 @@ export const DataTable: React.FC<TableProps> = ({ tabelData }) => {
   const getRows = (col: Column[], excelData: any) => {
 
     return [
-      ...excelData.map((person: any, idx: any) => ({
+      ...excelData.map((excelD: any, idx: any) => ({
         rowId: idx,
         cells: col.map((c: any) => {
-          return { type: "text", text: person[c.columnId].toString() };
+          return { type: "text", text: excelD[c.columnId].toString() };
         }),
       })),
     ];
@@ -83,10 +84,10 @@ export const DataTable: React.FC<TableProps> = ({ tabelData }) => {
   ): any[] => {
     changes.forEach((change:any) => {
       console.log(change.rowId,change.columnId,change.newCell.text)
-      const personIndex = change.rowId;
+      const excelDIndex = change.rowId;
       const fieldName = change.columnId;
-      console.log(prevexcelData[personIndex][fieldName])
-      prevexcelData[personIndex][fieldName] = change.newCell.text;
+      console.log(prevexcelData[excelDIndex][fieldName])
+      prevexcelData[excelDIndex][fieldName] = change.newCell.text;
     });
     
     return [...prevexcelData];
@@ -101,10 +102,12 @@ export const DataTable: React.FC<TableProps> = ({ tabelData }) => {
 
 
   return (
-    <div className="container" >
-      <button onClick={exportToExcel}>Export to Excel</button>
-      <ReactGrid
+    <div  className="p-4" >
+     <div className="w-full mb-10 flex justify-end"> <button className='text-sm bg-[#38419D] py-2 px-16  text-white rounded  font-bold hover:bg-[#3887BE]'  onClick={exportToExcel}>Export to Excel</button></div>
+     <div className="w-full">
+     <ReactGrid
       rows={[...rowHeader, ...rows]} columns={columns}  onCellsChanged={handleChanges} />
+     </div>
     </div>
   );
 };

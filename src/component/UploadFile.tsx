@@ -53,15 +53,15 @@ export const UploadExcel: React.FC<ChildProps> = ({setParentVariable}) => {
   };
 
   return (
-    <div>
-      <div {...getRootProps()} style={dropzoneStyles}>
+    <div className=' h-min-screen w-full pt-[10vh]'>
+      <div className=' w-[50%] my-auto mx-auto h-[250px] flex flex-col justify-center ' {...getRootProps()} style={dropzoneStyles}>
         <input {...getInputProps()} />
         <p>Drag and drop an Excel file here, or click to select one</p>
       </div>
       {file && (
-        <div>
-          <p>Selected File: {file.name}</p>
-          <button onClick={handleUpload}>Upload</button>
+        <div className='py-16'>
+          <p className='text-xl mb-10'><span className='font-bold'>Selected File</span>: {file.name}</p>
+          <button className='bg-[#38419D] py-4 w-[30%] text-white rounded  font-bold hover:bg-[#3887BE]' onClick={handleUpload}>Upload</button>
         </div>
       )}
     </div>

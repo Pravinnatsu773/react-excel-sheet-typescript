@@ -3,7 +3,6 @@ import logo from './logo.svg';
 import './App.css';
 import {UploadExcel} from './component/UploadFile'
 import { DataTable } from './component/DataTable';
-import { Table } from './component/Table';
 
 
 
